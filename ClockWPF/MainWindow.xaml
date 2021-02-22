@@ -1,0 +1,54 @@
+﻿<Window x:Class="ClockWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClockWPF"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Title="MainWindow" 
+        Height="450" 
+        Width="800"
+        Background="Black"
+        ResizeMode="NoResize"
+        MouseDown="Window_MouseDown"
+        MouseUp="Window_MouseUp"
+        MouseLeave="Window_MouseLeave"
+        MouseMove="Window_MouseMove">
+    <Window.Resources>
+        <Style x:Key="CloseButton" TargetType="Button">
+            <Style.Setters>
+                <Setter Property="Foreground" Value="Gray"/>
+                <Setter Property="Background" Value="Black"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="BorderBrush" Value="Black"/>
+                
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                    
+                </Setter>
+                
+            </Style.Setters>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Red"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" FlowDirection="RightToLeft">
+            <Button Width="30" Height="30" Content="X" FontSize="30" FontFamily="Ink Free" Style="{StaticResource CloseButton}" Click="CloseButton_Click"/>
+        </StackPanel>
+        <TextBlock DockPanel.Dock="Top" x:Name="TimeLable" Foreground="White" Text="00:00:00" FontSize="100" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Ink Free" Margin="0 50 0 0"/>
+        <TextBlock DockPanel.Dock="Left" x:Name="DateLable" Foreground="White" FontSize="65" Text="00 January 0000, Monday" Margin="0 0 0 100" FontFamily="Ink Free" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+    </DockPanel>
+</Window>
